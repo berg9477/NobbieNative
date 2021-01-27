@@ -1,21 +1,52 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { View, Image } from 'react-native';
+import styles from './styles/styling';
+import InputField from './components/InputField';
+import Search from './components/Search';
+import Results from './components/Results';
+import nobbieHeader from './assets/nobbieHeaderGreen.png'
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+class App extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            data: [],
+            name: '',
+            allUsage: [],
+        };
+        this.saveName = this.saveName.bind(this);
+        this.saveRelations = this.saveRelations.bind(this);
+        this.saveUsage = this.saveUsage.bind(this);
+    }
+
+    saveName(searchItem) {
+        this.setState({ name: searchItem });
+    }
+
+    saveUsage(result) {
+        this.setState({ allUsage: result });
+    }
+
+    saveRelations(result) {
+        this.setState({ data: result });
+    }
+
+    render() {
+
+        return (
+            <View style={styles.container}>
+                <Image style={styles.header} source={nobbieHeader}/>
+                <View style={styles.searchPanel}>
+                <InputField label="Type in your search..." saveName={this.saveName} />
+                <Search
+                    name={this.state.name}
+                    setRelatedResult={this.saveRelations}
+                    setUsageResult={this.saveUsage}
+                />
+                <Results allUsage={this.state.allUsage} allRelated={this.state.data} />
+                </View>
+            </View>
+        );
+    }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
