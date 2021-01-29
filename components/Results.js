@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Text, View, TextInput, FlatList, Button } from 'react-native';
-import Constants from 'expo-constants';
+import { Text, View, FlatList } from 'react-native';
 import styles from '../styles/styling';
 import Item from './Item';
+import Dashedline from './Dashedline';
 
 class Results extends React.Component {
     constructor() {
@@ -15,15 +15,17 @@ class Results extends React.Component {
     renderUsageData() {
         return this.props.allUsage.usages.map((item, index) => {
             let gen;
-            if(item.usage_gender === 'f'){
+            if (item.usage_gender === 'f') {
                 gen = 'females';
-            } else{
-                gen = 'males'
+            } else {
+                gen = 'males';
             }
             return (
-                <Text style={styles.resultText} key={index}>the {item.usage_full} use it for {gen}</Text>
-            )
-        })
+                <Text style={styles.resultText} key={index}>
+                    the {item.usage_full} use it for {gen}
+                </Text>
+            );
+        });
     }
 
     renderGenderData(gen) {
@@ -43,23 +45,45 @@ class Results extends React.Component {
         const renderItem = ({ item }) => <Item title={item} />;
 
         return (
-            <View>
-                {this.props.allUsage.gender !== undefined &&
-                <View>
-                    <Text style={styles.resultText}>{this.renderGenderData(this.props.allUsage.gender)}</Text>
-                    <View>{this.renderUsageData()}</View>
-                    <View style={styles.results}>
-                        {this.props.allRelated.length > 0 &&
-                        <FlatList
-                            style={styles.list}
-                            stickyHeaderIndices={[0]}
-                            ListHeaderComponent={()=><Text style={styles.resultHeader}>This name is related to</Text>}
-                            data={this.props.allRelated}
-                            renderItem={renderItem}
-                            keyExtractor={(item) => item}
-                        />}
+            <View style={styles.resultsWrapper}>
+                {(this.props.allUsage.gender !== undefined && this.props.noResult === false) && (
+                    <View>
+                        <View style={styles.results}>
+                            <Text style={styles.resultText}>
+                                {this.renderGenderData(this.props.allUsage.gender)}
+                            </Text>
+                        </View>
+                        <View style={styles.results}>{this.renderUsageData()}</View>
+                        <Dashedline />
+                        <View style={styles.results}>
+                            {this.props.allRelated.length > 0 ? (
+                                <FlatList
+                                    style={styles.list}
+                                    stickyHeaderIndices={[0]}
+                                    ListHeaderComponent={() => (
+                                        <Text style={styles.resultHeader}>
+                                            This name is related to
+                                        </Text>
+                                    )}
+                                    data={this.props.allRelated}
+                                    renderItem={renderItem}
+                                    keyExtractor={(item) => item}
+                                />
+                            ) : (
+                                <Text style={styles.resultText}>
+                                    There are no related names found to share
+                                </Text>
+                            )}
+                        </View>
                     </View>
-                </View>}
+                )}
+                {this.props.noResult === true && (
+                    <View style={styles.results}>
+                        <Text style={styles.resultText}>
+                            No results found, please try again.
+                        </Text>
+                    </View>
+                )}
             </View>
         );
     }

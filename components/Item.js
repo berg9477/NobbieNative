@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
-import Constants from 'expo-constants';
 import styles from '../styles/styling';
 
 class Item extends React.Component {

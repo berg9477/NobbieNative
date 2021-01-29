@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Text, View, TextInput} from 'react-native';
-import Constants from 'expo-constants';
+import {View, TextInput} from 'react-native';
 import styles from '../styles/styling';
 
 
@@ -12,15 +11,19 @@ class InputField extends React.Component
     }
 
     render() {
+
         return (
+
             <View>
                 <TextInput
                     onChangeText={(name) => this.props.saveName(name)}
                     style={styles.input}
                     placeholder={this.props.label}
                     id={this.props.label}
+                    keyboardType="default"
                 />
             </View>
+
         )
     }
 }
