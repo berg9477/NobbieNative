@@ -6,7 +6,9 @@ import axios from 'axios';
 class Search extends React.Component {
     constructor() {
         super();
-        this.state = {};
+        this.state = {
+            loading: false,
+        };
         this.handleClick = this.handleClick.bind(this);
     }
 
@@ -25,7 +27,10 @@ class Search extends React.Component {
                     if (usage.data.error === undefined) {
                         usage.data.forEach((item) => {
                             this.props.setUsageResult(item);
+                            this.props.setNoResult(false);
                         });
+                    } else {
+                        this.props.setNoResult(true);
                     }
                 }),
                 await axios.get(relatedUrl).then((related) => {
@@ -43,10 +48,14 @@ class Search extends React.Component {
         return (
             <View>
                 <TouchableOpacity
-                    style={styles.button}
+                    disabled={this.props.buttonDisabled}
+                    style={!this.props.buttonDisabled ? styles.button : styles.buttonDisabled}
                     onPress={() => this.handleClick()}>
                     <Text style={styles.buttonText}>Get results</Text>
                 </TouchableOpacity>
+                {this.state.loading &&
+                <Text>Loading...</Text>
+                }
             </View>
         );
     }
