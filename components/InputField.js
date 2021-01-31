@@ -1,8 +1,6 @@
 import * as React from 'react';
 import {View, TextInput} from 'react-native';
-import styles from '../styles/styling';
-
-
+import searchStyling from "../styles/searchStyling";
 class InputField extends React.Component
 {
     constructor() {
@@ -17,7 +15,7 @@ class InputField extends React.Component
             <View>
                 <TextInput
                     onChangeText={(name) => this.props.saveName(name)}
-                    style={styles.input}
+                    style={searchStyling.input}
                     placeholder={this.props.label}
                     id={this.props.label}
                     keyboardType="default"

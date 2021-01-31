@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View, FlatList } from 'react-native';
-import styles from '../styles/styling';
+import resultsStyles from "../styles/resultsStyling";
 import Item from './Item';
 import Dashedline from './Dashedline';
 
@@ -12,6 +12,7 @@ class Results extends React.Component {
         this.renderGenderData = this.renderGenderData.bind(this);
     }
 
+    /*Functions to calculate the output text based upon search results for general usage*/
     renderUsageData() {
         return this.props.allUsage.usages.map((item, index) => {
             let gen;
@@ -21,13 +22,12 @@ class Results extends React.Component {
                 gen = 'males';
             }
             return (
-                <Text style={styles.resultText} key={index}>
+                <Text style={resultsStyles.resultText} key={index}>
                     the {item.usage_full} use it for {gen}
                 </Text>
             );
         });
     }
-
     renderGenderData(gen) {
         let gender;
         if (gen === 'f') {
@@ -35,7 +35,7 @@ class Results extends React.Component {
         } else if (gen === 'm') {
             gender = 'This name is only used for naming men';
         } else {
-            //gender can also be mf or fm
+            /*gender can also be mf or fm*/
             gender = 'This name is used for both men and women';
         }
         return gender;
@@ -45,23 +45,23 @@ class Results extends React.Component {
         const renderItem = ({ item }) => <Item title={item} />;
 
         return (
-            <View style={styles.resultsWrapper}>
+            <View style={resultsStyles.resultsWrapper}>
                 {(this.props.allUsage.gender !== undefined && this.props.noResult === false) && (
                     <View>
-                        <View style={styles.results}>
-                            <Text style={styles.resultText}>
+                        <View style={resultsStyles.results}>
+                            <Text style={resultsStyles.resultText}>
                                 {this.renderGenderData(this.props.allUsage.gender)}
                             </Text>
                         </View>
-                        <View style={styles.results}>{this.renderUsageData()}</View>
+                        <View style={resultsStyles.results}>{this.renderUsageData()}</View>
                         <Dashedline />
-                        <View style={styles.results}>
+                        <View style={resultsStyles.results}>
                             {this.props.allRelated.length > 0 ? (
                                 <FlatList
-                                    style={styles.list}
+                                    style={resultsStyles.list}
                                     stickyHeaderIndices={[0]}
                                     ListHeaderComponent={() => (
-                                        <Text style={styles.resultHeader}>
+                                        <Text style={resultsStyles.resultHeader}>
                                             This name is related to
                                         </Text>
                                     )}
@@ -70,7 +70,7 @@ class Results extends React.Component {
                                     keyExtractor={(item) => item}
                                 />
                             ) : (
-                                <Text style={styles.resultText}>
+                                <Text style={resultsStyles.resultText}>
                                     There are no related names found to share
                                 </Text>
                             )}
@@ -78,8 +78,8 @@ class Results extends React.Component {
                     </View>
                 )}
                 {this.props.noResult === true && (
-                    <View style={styles.results}>
-                        <Text style={styles.resultText}>
+                    <View style={resultsStyles.results}>
+                        <Text style={resultsStyles.resultText}>
                             No results found, please try again.
                         </Text>
                     </View>

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
-import styles from '../styles/styling';
+import resultsStyles from "../styles/resultsStyling";
 
 class Item extends React.Component {
     constructor() {
@@ -10,8 +10,8 @@ class Item extends React.Component {
 
     render() {
         return (
-            <View style={styles.item}>
-                <Text style={styles.resultText}>{this.props.title}</Text>
+            <View style={resultsStyles.item}>
+                <Text style={resultsStyles.resultText}>{this.props.title}</Text>
             </View>
         );
     }
