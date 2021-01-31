@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styles from '../styles/styling';
+import styles from '../styles/mainStyling';
 import Dash from "react-native-dash";
 
 
