@@ -1,8 +1,9 @@
 import * as React from 'react';
-import { Text, View, FlatList } from 'react-native';
-import resultsStyles from "../styles/resultsStyling";
+import { Text, View, FlatList, Button, TouchableOpacity } from 'react-native';
+import resultsStyles from '../styles/resultsStyling';
 import Item from './Item';
 import Dashedline from './Dashedline';
+import mainStyling from '../styles/mainStyling';
 
 class Results extends React.Component {
     constructor() {
@@ -45,15 +46,23 @@ class Results extends React.Component {
         const renderItem = ({ item }) => <Item title={item} />;
 
         return (
-            <View style={resultsStyles.resultsWrapper}>
-                {(this.props.allUsage.gender !== undefined && this.props.noResult === false) && (
+            <View>
+                <TouchableOpacity
+                    style={mainStyling.button}
+                    onPress={() => this.props.navigation.navigate('Home')}>
+                    <Text style={mainStyling.buttonText}>Back to search</Text>
+                </TouchableOpacity>
+                {this.props.allUsage.gender !== undefined &&
+                this.props.noResult === false && (
                     <View>
                         <View style={resultsStyles.results}>
                             <Text style={resultsStyles.resultText}>
                                 {this.renderGenderData(this.props.allUsage.gender)}
                             </Text>
                         </View>
-                        <View style={resultsStyles.results}>{this.renderUsageData()}</View>
+                        <View style={resultsStyles.results}>
+                            {this.renderUsageData()}
+                        </View>
                         <Dashedline />
                         <View style={resultsStyles.results}>
                             {this.props.allRelated.length > 0 ? (
