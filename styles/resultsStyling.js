@@ -4,6 +4,8 @@ const resultsStyles = StyleSheet.create({
     resultText: {
         fontSize: 15,
         fontFamily: 'Courier New',
+        textAlign: 'center',
+        paddingTop: 10,
     },
     resultHeader:{
         backgroundColor:  'hsl(123, 31%, 73%)',
@@ -12,9 +14,6 @@ const resultsStyles = StyleSheet.create({
         fontSize: 20,
         padding: 8,
         fontFamily: 'Avenir-Medium',
-    },
-    resultsWrapper: {
-        flex: 0.7,
     },
     results: {
         padding: 10,
@@ -31,6 +30,7 @@ const resultsStyles = StyleSheet.create({
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
         backgroundColor: 'white',
+        height: 250,
     },
 });
 

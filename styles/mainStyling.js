@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         padding: 4,
     },
     header: {
-        width: 400,
+        width: '100%',
         resizeMode: 'contain',
     },
     main: {
@@ -29,7 +29,28 @@ const styles = StyleSheet.create({
         width: '95%',
         alignItems: "center",
         justifyContent: 'center',
-    }
+    },
+    button: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 8,
+        backgroundColor: 'hsl(123, 31%, 73%)',
+        padding: 10,
+        borderRadius: 12,
+    },
+    buttonDisabled: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        margin: 8,
+        backgroundColor: 'hsl(123, 31%, 90%)',
+        padding: 10,
+        borderRadius: 12,
+    },
+    buttonText: {
+        fontSize: 20,
+        fontFamily: 'Avenir-Medium',
+        color: 'white',
+    },
 });
 
 export default styles;

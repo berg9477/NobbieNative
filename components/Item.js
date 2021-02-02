@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
-import resultsStyles from "../styles/resultsStyling";
+import resultsStyles from '../styles/resultsStyling';
 
 class Item extends React.Component {
     constructor() {
