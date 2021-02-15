@@ -1,10 +1,10 @@
-Installatiehandleiding Nobbie React APP
+Installatiehandleiding Nobbie React Native APP
 
 - Omschrijving
 
 Deze applicatie is gemaakt voor het vinden van achtergrond informatie over een naam en gebruikers kunnen zien aan welke andere namen een specifieke naam gerelateerd is.
 
-![](NobbieNative.PNG)
+![](NobbieNative.png)
 
 
 - API Keys
