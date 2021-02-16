@@ -12,7 +12,7 @@
 
 Deze applicatie is gemaakt voor het vinden van achtergrond informatie over een naam en gebruikers kunnen zien aan welke andere namen een specifieke naam gerelateerd is.
 
-![page](nobbieNative.png)
+![page](nobbieNative.png?v=4&s=100)
 
 
 ## API Keys
